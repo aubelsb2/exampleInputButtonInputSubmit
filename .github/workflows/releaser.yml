@@ -42,12 +42,3 @@ jobs:
           args: release --rm-dist -f .goreleaser.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file_glob: true
-          file: "*.gif"
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: "Generated file"

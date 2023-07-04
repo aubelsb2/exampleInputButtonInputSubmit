@@ -1,0 +1,12 @@
+builds:
+  - binary: awesomeProject1
+checksum:
+  name_template: 'checksums-linux.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'

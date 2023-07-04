@@ -1,10 +1,16 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+)
+
+var (
+	//go:embed "index.html"
+	indexHtmlData []byte
 )
 
 func main() {
@@ -14,8 +20,8 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("index.html"))
-	tmpl.Execute(w, nil)
+	tmpl := template.Must(template.New("index.html").Parse(string(indexHtmlData)))
+	tmpl.ExecuteTemplate(w, "index.html", nil)
 }
 
 func processHandler(w http.ResponseWriter, r *http.Request) {
